@@ -28,12 +28,7 @@ namespace GmudGen.Pages
 
         private enum Columm
         {
-            Count = 1,
-            Date = 2,
-            Info = 3,
-            Desc = 4,
-            Area = 5,
-            Executor = 6
+            Blank, Count, Date, Info, Desc, Area, Executor
         };
 
         private int ROW_STEP = 22;
