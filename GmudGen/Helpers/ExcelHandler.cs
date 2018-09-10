@@ -68,16 +68,11 @@ namespace GmudGen.Helpers
         /// <param name="row"></param>
         /// <param name="columm"></param>
         /// <param name="value"></param>
-        public void Write(int row, int columm, string value, bool newline)
+        public void Write(int row, int columm, string value)
         {
             try
             {
                 worksheet.Cells[row, columm] = value;
-                if (newline)
-                {
-                    Range line = (Range)worksheet.Rows[row + 1];
-                    line.Insert();
-                }
             }
             catch (Exception ex)
             {
@@ -95,6 +90,12 @@ namespace GmudGen.Helpers
             var s = worksheet.Cells[row, columm].Value;
             if (s != null) s = Convert.ToString(s);
             return s;
+        }
+
+        public void InsertLine(int row)
+        {
+            Range line = (Range)worksheet.Rows[row];
+            line.Insert();
         }
 
         /// <summary>

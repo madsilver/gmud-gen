@@ -24,18 +24,22 @@ namespace GmudGen.Pages
     /// </summary>
     public partial class Build : UserControl
     {
-        ExcelHandler excel;
+        private ExcelHandler excel;
 
-        int ROW_STEP = 22;
-        int ROW_TESTS_1 = 26;
-        int ROW_TESTS_2 = 30;
-        int ROW_ROLLBACK = 34;
+        private enum Columm
+        {
+            Count = 1,
+            Date = 2,
+            Info = 3,
+            Desc = 4,
+            Area = 5,
+            Executor = 6
+        };
 
-        int COL_COUNT = 1;
-        int COL_DATE = 2;
-        int COL_DESC = 4;
-        int COL_AREA = 5;
-        int COL_EXECUTOR = 6;
+        private int ROW_STEP = 22;
+        private int ROW_TESTS_1 = 26;
+        private int ROW_TESTS_2 = 30;
+        private int ROW_ROLLBACK = 34;
 
         DateTime CURRENT_DATE;
 
@@ -70,6 +74,11 @@ namespace GmudGen.Pages
                 fields.Add("- Responsável");
             }
 
+            if (Prefs.Info.Directory == "x.x.x - Release")
+            {
+                fields.Add("- Pasta");
+            }
+
             if (fields.Count > 0)
             {
                 string m = String.Format("Os campos abaixo são obrigatórios e precisam ser preenchidos:\n\n{0}", String.Join("\n", fields));
@@ -94,13 +103,11 @@ namespace GmudGen.Pages
                 foreach (string step in stp.GetSteps())
                 {
                     SetCountStep();
-
-                    excel.Write(ROW_STEP, COL_AREA, Prefs.Info.Area, false);
-                    excel.Write(ROW_STEP, COL_EXECUTOR, Prefs.Info.Executor, false);
-                    excel.Write(ROW_STEP, COL_DESC, step, true);
-
+                    excel.Write(ROW_STEP, (int)Columm.Area, Prefs.Info.Area);
+                    excel.Write(ROW_STEP, (int)Columm.Executor, Prefs.Info.Executor);
+                    excel.Write(ROW_STEP, (int)Columm.Desc, step);
+                    excel.InsertLine(ROW_STEP + 1);
                     SetDate();
-
                     UpdateCountLine();
                 }
             }
@@ -109,49 +116,49 @@ namespace GmudGen.Pages
         private void GeneralInfo()
         {
             Console("Writing general information");
-            excel.Write(6, 6, Prefs.Info.Crq, false);
-            excel.Write(7, 3, Prefs.Info.Owner, false);
-            excel.Write(7, 6, Prefs.Info.Phone, false);
-            excel.Write(8, 3, Prefs.Info.BlockEnv, false);
-            excel.Write(9, 3, Prefs.Info.UpdateCMDB, false);
-            excel.Write(10, 3, Prefs.Info.ReplicationDR, false);
-            excel.Write(11, 3, Prefs.Info.DoubleCustody, false);
-            excel.Write(12, 3, Prefs.Info.AccessDataCenter, false);
-            excel.Write(13, 3, Prefs.Info.Homologated, false);
-            excel.Write(13, 5, Prefs.Info.HomologatedDesc, false);
-            excel.Write(14, 3, Prefs.Info.UserImpacted, false);
-            excel.Write(14, 5, Prefs.Info.UserImpactedDesc, false);
-            excel.Write(15, 3, Prefs.Info.CallCCT, false);
+            excel.Write(6, 6, Prefs.Info.Crq);
+            excel.Write(7, 3, Prefs.Info.Owner);
+            excel.Write(7, 6, Prefs.Info.Phone);
+            excel.Write(8, 3, Prefs.Info.BlockEnv);
+            excel.Write(9, 3, Prefs.Info.UpdateCMDB);
+            excel.Write(10, 3, Prefs.Info.ReplicationDR);
+            excel.Write(11, 3, Prefs.Info.DoubleCustody);
+            excel.Write(12, 3, Prefs.Info.AccessDataCenter);
+            excel.Write(13, 3, Prefs.Info.Homologated);
+            excel.Write(13, 5, Prefs.Info.HomologatedDesc);
+            excel.Write(14, 3, Prefs.Info.UserImpacted);
+            excel.Write(14, 5, Prefs.Info.UserImpactedDesc);
+            excel.Write(15, 3, Prefs.Info.CallCCT);
 
             // servers
-            excel.Write(19, 4, "Servidores:\n" + Prefs.Info.Servers, false);
+            excel.Write(19, 4, "Servidores:\n" + Prefs.Info.Servers);
 
             string schedule = String.Format("{0} {1}", Prefs.Info.Schedule, Prefs.Info.ScheduleTime);
             CURRENT_DATE = DateTime.Parse(schedule);
 
-            excel.Write(19, 2, CURRENT_DATE.ToString(dtFmt), false);
-            excel.Write(19, 3, CURRENT_DATE.ToString(dtFmt), false);
+            excel.Write(19, 2, CURRENT_DATE.ToString(dtFmt));
+            excel.Write(19, 3, CURRENT_DATE.ToString(dtFmt));
         }
 
         private void SetCountStep()
         {
-            string v = excel.Read(ROW_STEP - 1, COL_COUNT);
-            int val = 0, i = 1;
+            string v = excel.Read(ROW_STEP - 1, (int)Columm.Count);
+            int i = 1;
 
-            if (Int32.TryParse(v, out val))
+            if (Int32.TryParse(v, out int val))
             {
                 i = Int32.Parse(v) + 1;
             }
 
-            excel.Write(ROW_STEP, COL_COUNT, i.ToString(), false);
+            excel.Write(ROW_STEP, (int)Columm.Count, i.ToString());
         }
 
         private void SetDate()
         {
-            excel.Write(ROW_STEP, COL_DATE, CURRENT_DATE.ToString(dtFmt), false);
+            excel.Write(ROW_STEP, (int)Columm.Date, CURRENT_DATE.ToString(dtFmt));
 
             CURRENT_DATE = CURRENT_DATE.AddMinutes(5);
-            excel.Write(ROW_STEP, COL_DATE+1, CURRENT_DATE.ToString(dtFmt), false);
+            excel.Write(ROW_STEP, (int)Columm.Date + 1, CURRENT_DATE.ToString(dtFmt));
         }
 
         private void UpdateCountLine()
@@ -165,7 +172,7 @@ namespace GmudGen.Pages
         private void Console(string s)
         {
             DateTime dt = DateTime.Now;
-            string m = String.Format("[{0}] - {1}\n", dt.ToString("yyyy-MM-dd HH:mm:ss"), s);
+            string m = String.Format("{0} - {1}\n", dt.ToString("yyyy-MM-dd HH:mm:ss"), s);
             tbConsole.Inlines.Add(m);
         }
     }
