@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <steps>
+    <step id="undeploy">
+      [UNDEPLOY PORTLETS]
+      No diretório /data/EAP-6.3.0/jboss-eap-6.3/standalone/deployments/
+      Criar os arquivos:
+      {{undeploy}}
+      Verificar se os arquivos foram criados:
+      {{undeployed}}
+    </step>
+    <step id="clean-cache">
+      [LIMPEZA DE CACHE]
+      No diretório /data/EAP-6.3.0/jboss-eap-6.3/standalone/deployments/
+      Apagar (se existir) as pastas:
+      {{cache}}
+    </step>
+    <step id="deploy">
+      [DEPLOY PORTLETS]
+      No diretório:
+      \\ldc-files-500\Unidades\Terminais\Rio\Releases\{{directory}}
+      Copiar os arquivos:
+      {{war}}
+      Colar no servidor LDC-WEB-505 no diretório /data/EAP-6.3.0/deploy/
+      Verificar se o(s) arquivo(s) foram gerados automaticamente:
+      {{deployed}}
+    </step>
+  </steps>
+</template>

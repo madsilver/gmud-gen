@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <steps>
+    <step name="undeploy">
+      [UNDEPLOY SERVICES]
+      No diretório /data/EAP-6.3.0/jboss-eap-6.3/standalone/deployments/
+      Criar os arquivos:
+      {{undeploy}}
+      Verificar se os arquivos foram criados:
+      {{undeployed}}
+    </step>
+    <step name="clean-cache">
+      [LIMPEZA DE CACHE]
+      No diretório:
+      /data/EAP-6.3.0/jboss-eap-6.3/standalone/tmp/work/jboss.web/default-host/
+      Apagar (se existir) as pastas:
+      {{cache}}
+    </step>
+    <step name="deploy">
+      [DEPLOY SERVICES]
+      No diretório:
+      \\ldc-files-500\Unidades\Terminais\Rio\Releases\{{directory}}
+      Copiar os arquivos:
+      {{war}}
+      Colar no servidor LDC-WEB-505 no diretório
+      /data/EAP-6.3.0/jboss-eap-6.3/standalone/deployments/
+      Criar os arquivos:
+      {{dodeploy}}
+      Verificar se o(s) arquivo(s) foram gerados automaticamente:
+      {{deployed}}
+    </step>
+  </steps>
+</template>

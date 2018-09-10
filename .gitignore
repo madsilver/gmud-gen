@@ -1,4 +1,4 @@
 .vs
-GmudGen/bin
 GmudGen/obj
 packages/cmd.0.2.0/
+GmudGen/bin/Debug/*.*

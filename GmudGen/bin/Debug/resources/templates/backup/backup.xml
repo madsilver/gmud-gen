@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <steps>
+    <step name="backup">
+      [BACKUP]
+      Copiar os arquivos do diretório: 
+      /data/EAP-6.3.0/jboss-eap-6.3/standalone/deployments/ 
+      para o diretório: 
+      /data/temp/backup/{(schedule}}/ 
+      (criar o diretório de backup se não existir)
+    </step>
+  </steps>
+</template>
