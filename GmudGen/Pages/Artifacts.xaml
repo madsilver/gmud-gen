@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="GmudGen.Pages.Artifacts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" Unloaded="UserControl_Unloaded">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Margin="0 0 0 20">
+                    <TextBlock Text="Artifacts" Style="{StaticResource Heading2}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                    <Button Name="btnOpen" Content="Open" Click="btnOpen_Click" Width="100" Margin="10 0 0 0" Background="#FF007ACC"/>
+                </StackPanel>
+                <DataGrid x:Name="dgPortlets"  AutoGenerateColumns="False" ItemsSource="{Binding}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="File" Width="320"/>
+                        <DataGridCheckBoxColumn Binding="{Binding IsPortlet}" Header="Portlet"/>
+                        <DataGridCheckBoxColumn Binding="{Binding IsService}" Header="Service"/>
+                        <DataGridCheckBoxColumn Binding="{Binding IsSnx}" Header="SNX"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

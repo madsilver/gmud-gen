@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GmudGen", "GmudGen\GmudGen.csproj", "{77FA4280-7FC3-417B-8575-186ED66044BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77FA4280-7FC3-417B-8575-186ED66044BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77FA4280-7FC3-417B-8575-186ED66044BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77FA4280-7FC3-417B-8575-186ED66044BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77FA4280-7FC3-417B-8575-186ED66044BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCAF53F4-F26F-46FC-BF11-F80585106F5B}
+	EndGlobalSection
+EndGlobal

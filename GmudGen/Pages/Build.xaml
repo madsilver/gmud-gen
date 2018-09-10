@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="GmudGen.Pages.Build"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="562">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Margin="0 0 0 20">
+                    <TextBlock Text="Build" Style="{StaticResource Heading2}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                    <Button Name="btnStart" Content="Start" Width="100" Margin="10 0 0 0" Click="btnStart_Click" Background="#FF007ACC"/>
+                </StackPanel>
+                <TextBlock Name="tbConsole" Height="200" Margin="0 50 0 0"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
