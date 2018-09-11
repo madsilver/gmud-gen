@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GmudGen.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,23 @@ namespace GmudGen.Pages
     /// </summary>
     public partial class Notification : UserControl
     {
+        bool unload = true;
         public Notification()
         {
             InitializeComponent();
+
+            Prefs.Info.Contacts = "ti.gmud@grupolibra.com.br\ntisistemas.t1rio@grupolibra.com.br\nsuporte_tos";
+
+            tbContacts.Text = Prefs.Info.Contacts;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            unload = !unload;
+
+            if (unload) return;
+
+            Prefs.Info.Contacts = tbContacts.Text;
         }
     }
 }

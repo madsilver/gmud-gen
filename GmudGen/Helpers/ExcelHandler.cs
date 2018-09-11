@@ -98,6 +98,12 @@ namespace GmudGen.Helpers
             line.Insert();
         }
 
+        public void ColorCell(int row, int columm)
+        {
+            var s = worksheet.Cells[row, columm];
+            s.Interior.Color = XlRgbColor.rgbYellow;
+        }
+
         /// <summary>
         /// Fecha o arquivo
         /// </summary>

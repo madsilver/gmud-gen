@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <steps>
+    <step name="step-start">
+    [PONTO DE CONTROLE]
+Informar início das Atividades da Mudança enviando e-mail para:
+{{contacts}}
+    </step>
+    <step name="step-end">
+      [PONTO DE CONTROLE]
+Caso a atividade anterior tenha sido executada com sucesso enviar e-mail para:
+{{contacts}}
+
+Caso contrário deverá ser iniciado o Plano de Remediação.
+    </step>
+  </steps>
+</template>

@@ -11,6 +11,6 @@ namespace GmudGen.Domain.Steps
         List<string> GetFiles();
         void SetFiles(string file);
         List<string> GetSteps();
-        string ParserStep(string step, string type);
+        string ParserStep(string step, string id);
     }
 }

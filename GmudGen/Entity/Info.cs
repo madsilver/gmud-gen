@@ -28,6 +28,7 @@ namespace GmudGen.Entity
         private string userImpacted;
         private string userImpactedDesc;
         private string callCCT;
+        private string contacts;
 
         public string Schedule { get => schedule; set => schedule = value; }
         public string ScheduleTime { get => scheduleTime; set => scheduleTime = value; }
@@ -49,5 +50,6 @@ namespace GmudGen.Entity
         public string HomologatedDesc { get => homologatedDesc; set => homologatedDesc = value; }
         public string UserImpactedDesc { get => userImpactedDesc; set => userImpactedDesc = value; }
         public string Directory { get => directory; set => directory = value; }
+        public string Contacts { get => contacts; set => contacts = value; }
     }
 }

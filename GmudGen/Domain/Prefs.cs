@@ -16,6 +16,7 @@ namespace GmudGen.Domain
         public static string ServiceTemplate;
         public static string SnxTemplate;
         public static string BackupTemplate;
+        public static string ControlPointTemplate;
 
         public static List<ISteps> ListSteps;
 
@@ -29,6 +30,7 @@ namespace GmudGen.Domain
             ServiceTemplate = "service";
             SnxTemplate = "snx";
             BackupTemplate = "backup";
+            ControlPointTemplate = "control-point";
         }
 
         public static void ReloadArtifacts()

@@ -26,6 +26,11 @@ namespace GmudGen.Pages
     {
         private ExcelHandler excel;
 
+        private enum ControlPoint
+        {
+            Start, End
+        }
+
         private enum Columm
         {
             Blank, Count, Date, Info, Desc, Area, Executor
@@ -36,13 +41,17 @@ namespace GmudGen.Pages
         private int ROW_TESTS_2 = 30;
         private int ROW_ROLLBACK = 34;
 
-        DateTime CURRENT_DATE;
+        private DateTime CURRENT_DATE;
 
-        string dtFmt = "yyyy-MM-dd HH:mm";
+        private string dtFmt = "yyyy-MM-dd HH:mm";
+
+        private ISteps controlPoint;
 
         public Build()
         {
             InitializeComponent();
+
+            controlPoint = new ControlPointStep();
 
             Console("Ready");
         }
@@ -92,6 +101,8 @@ namespace GmudGen.Pages
             Thread.Sleep(2000);
 
             GeneralInfo();
+
+            WriteControlPoint((int)ControlPoint.Start);
             
             foreach(ISteps stp in Prefs.ListSteps)
             {
@@ -106,6 +117,8 @@ namespace GmudGen.Pages
                     UpdateCountLine();
                 }
             }
+
+            WriteControlPoint((int)ControlPoint.End);
         }
 
         private void GeneralInfo()
@@ -162,6 +175,24 @@ namespace GmudGen.Pages
             ROW_TESTS_1++;
             ROW_TESTS_2++;
             ROW_ROLLBACK++;
+        }
+
+        private void WriteControlPoint(int status)
+        {
+            Array message = controlPoint.GetSteps().ToArray();
+
+            SetCountStep();
+            excel.Write(ROW_STEP, (int)Columm.Area, Prefs.Info.Area);
+            excel.Write(ROW_STEP, (int)Columm.Executor, Prefs.Info.Executor);
+            excel.Write(ROW_STEP, (int)Columm.Desc, message.GetValue(status).ToString());
+
+            if(status == 0)
+                excel.InsertLine(ROW_STEP + 1);
+
+            excel.ColorCell(ROW_STEP, (int)Columm.Desc);
+
+            SetDate();
+            UpdateCountLine();
         }
 
         private void Console(string s)

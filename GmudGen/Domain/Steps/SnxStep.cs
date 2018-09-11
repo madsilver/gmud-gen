@@ -20,7 +20,7 @@ namespace GmudGen.Domain.Steps
             throw new NotImplementedException();
         }
 
-        public string ParserStep(string step, string type)
+        public string ParserStep(string step, string id)
         {
             throw new NotImplementedException();
         }

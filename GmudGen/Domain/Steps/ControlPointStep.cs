@@ -7,22 +7,18 @@ using System.Xml;
 
 namespace GmudGen.Domain.Steps
 {
-    class BackupStep : ISteps
+    class ControlPointStep : ISteps
     {
-        private DateTime dt;
-        private List<string> files;
-
-        public BackupStep()
+        public ControlPointStep()
         {
-            this.dt = DateTime.Parse(Prefs.Info.Schedule);
-            this.files = new List<string>();
+            GetSteps();
         }
 
-        public List<string> GetSteps()
+         public List<string> GetSteps()
         {
-            string file = String.Format("{0}\\resources\\templates\\backup\\{1}.xml",
+            string file = String.Format("{0}\\resources\\templates\\control-point\\{1}.xml",
                Environment.CurrentDirectory,
-               Prefs.BackupTemplate);
+               Prefs.ControlPointTemplate);
 
             string step;
 
@@ -45,19 +41,17 @@ namespace GmudGen.Domain.Steps
 
         public string ParserStep(string step, string id)
         {
-            step = step.Replace("{(schedule}}", this.dt.ToString("yyyy-MM-dd"));
-
-            return step;
-        }
-
-        public List<string> GetFiles()
-        {
-            return this.files;
+            return step.Replace("{{contacts}}", Prefs.Info.Contacts);
         }
 
         public void SetFiles(string file)
         {
-            this.files.Add(file);
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetFiles()
+        {
+            throw new NotImplementedException();
         }
     }
 }

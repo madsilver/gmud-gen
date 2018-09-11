@@ -89,6 +89,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Domain\Steps\BackupStep.cs" />
+    <Compile Include="Domain\Steps\ControlPointStep.cs" />
     <Compile Include="Domain\Steps\ISteps.cs" />
     <Compile Include="Domain\Steps\PortletStep.cs" />
     <Compile Include="Domain\Steps\ServiceStep.cs" />

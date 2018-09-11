@@ -41,7 +41,7 @@ namespace GmudGen.Domain.Steps
             return list;
         }
 
-        public string ParserStep(string step, string type)
+        public string ParserStep(string step, string id)
         {
             string undeploy = null, undeployed = null, cache = null, deploy = null, deployed = null, dodeploy = null;
 
